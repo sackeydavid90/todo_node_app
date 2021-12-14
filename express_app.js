@@ -1,6 +1,6 @@
 const express = require ('express');
 const server = express();//
-const mongoose = require('mongoose');``
+const mongoose = require('mongoose');
 const mongo_db_url = 'mongodb+srv://Sackeydavid90:salvation@19&97@cluster0.wggpz.mongodb.net/todo_db?retryWrites=true&w=majority';
 
 server.get('student' , function(request, response){
