@@ -1,10 +1,10 @@
 // this is my server built with nodejs express,
-
+require('dotenv').config();
 const express = require ('express');//importing express(server) to our variable express.
 const server = express();//refering/calling express to variable server
 const mongoose = require('mongoose');// a module that helps the server to connect our data base, through our url
 // const mongo_db_url = 'mongodb+srv://Sackeydavid90:salvation19&97@cluster0.wggpz.mongodb.net/todo_db?retryWrites=true&w=majority';
-const mongo_db_url = 'mongodb://localhost/todos_db';
+// const mongo_db_url = 'mongodb://localhost/todos_db';
 
 //gives server direct access to our database through our url
 const todoController = require ('./controllers/todoController');//set up todoController, and export it to its variable
@@ -14,7 +14,7 @@ server.use(express.json());// converts all our bodies in a json format
 //listens your local host number and performs the function next to it
 server.listen(4000, function(){
     console.log('server has started to run in express');
-    mongoose.connect(mongo_db_url)//server connects to our database
+    mongoose.connect(process.env.MONGO_DB_ATLAS)//server connects to our database
     .then(function(){//after, .then runs
         console.log('Db is connected');
         server.get('/todos' , todoController.getAllTodo);
