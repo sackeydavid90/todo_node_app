@@ -1,5 +1,6 @@
 // this is my server built with nodejs express,
 require('dotenv').config();
+const PORT = process.env.PORT || 4000;
 const express = require ('express');//importing express(server) to our variable express.
 const server = express();//refering/calling express to variable server
 const mongoose = require('mongoose');// a module that helps the server to connect our data base, through our url
@@ -12,7 +13,7 @@ const todoController = require ('./controllers/todoController');//set up todoCon
 server.use(express.json());// converts all our bodies in a json format
 
 //listens your local host number and performs the function next to it
-server.listen(4000, function(){
+server.listen(PORT, function(){
     console.log('server has started to run in express');
     mongoose.connect(process.env.MONGO_DB_ATLAS)//server connects to our database
     .then(function(){//after, .then runs
