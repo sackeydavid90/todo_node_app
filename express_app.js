@@ -12,6 +12,9 @@ const mongoose = require('mongoose');// a module that helps the server to connec
 const todoController = require ('./controllers/todoController');//set up todoController, and export it to its variable
 
 server.use(express.json());// converts all our bodies in a json format
+server.get('/', function(request, response){
+    response.status(200).json({success: true, message: 'Welcome, this is David todo node API '})
+})       
 
 server.get('/todos' , todoController.getAllTodo);
 server.post('/todos' , todoController.insertTodo );
@@ -26,9 +29,6 @@ server.listen(PORT, function(){
     mongoose.connect(process.env.MONGO_DB_ATLAS)//server connects to our database
     .then(function(){//after, .then runs
         console.log('Db is connected');
-        server.get('/', function(request, response){
-            response.status(200).json({success: true, message: 'Welcome, this is David todo node API '})
-        })       
     
    })
     .catch(function(error){// if there is any problem, .catch should run
